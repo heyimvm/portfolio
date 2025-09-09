@@ -1,118 +1,48 @@
-<!-- 🌸 Embedded Portfolio (Like Adobe/CodePen Embed) -->
-<iframe 
-  srcdoc="
-  <!DOCTYPE html>
-  <html lang='en'>
-  <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Ved's Portfolio</title>
-    <link href='https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@400;600&display=swap' rel='stylesheet'>
-    <style>
-      * { margin:0; padding:0; box-sizing:border-box; }
-      body {
-        max-width: 100vw;
-        font-family: 'Raleway', sans-serif;
-        background: linear-gradient(to bottom, #ff6fa1, #fff0f5);
-        color: #4a004e;
-        text-align: center;
-        padding-bottom: 2rem;
-      }
-      .static-header {
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        padding:0.8rem 2rem;
-        font-family:'Playfair Display',serif;
-        font-size:1.8rem;
-        color:#fff7ff;
-        font-style:italic;
-        border-radius:1rem;
-      }
-      .container {
-        display:flex;
-        max-width:900px;
-        background:#fff;
-        border-radius:1.2rem;
-        box-shadow:0 6px 30px rgba(0,0,0,0.15);
-        overflow:hidden;
-        margin:2rem auto;
-        gap:2rem;
-        padding:2rem;
-      }
-      .left-column {
-        flex:1;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        gap:1rem;
-        border-right:2px solid #ffd6e8;
-        padding-right:1.5rem;
-      }
-      .profile-img {
-        width:140px; height:140px;
-        border-radius:50%;
-        object-fit:cover;
-      }
-      .name {
-        font-family:'Playfair Display',serif;
-        font-size:2.5rem;
-        color:#e67394;
-        font-weight:bold;
-      }
-      .title { font-style:italic; font-size:1.1rem; color:#6d2b50; }
-      .right-column { flex:2; display:flex; flex-direction:column; gap:1rem; text-align:left; }
-      .section {
-        background:#fff0f4;
-        border-radius:0.8rem;
-        padding:1rem 1.5rem;
-      }
-      .section h2 {
-        font-family:'Playfair Display',serif;
-        font-size:1.5rem;
-        color:#e94b77;
-        margin-bottom:0.5rem;
-      }
-      ul { list-style:none; padding:0; }
-      li::before { content:'• '; color:#e94b77; }
-      .softwares { display:flex; flex-wrap:wrap; gap:0.5rem; }
-      .software-icon {
-        background:white;
-        padding:0.4rem 0.6rem;
-        border-radius:0.4rem;
-        box-shadow:0 2px 6px rgba(0,0,0,0.1);
-        font-size:0.85rem;
-      }
-      .projects {
-        max-width:700px;
-        margin:2rem auto;
-        text-align:left;
-        padding:1rem 1.5rem;
-        background:#fff0f4;
-        border-radius:1rem;
-        box-shadow:0 4px 15px rgba(0,0,0,0.08);
-      }
-      .project-list a {
-        display:block;
-        margin:0.6rem 0;
-        padding:0.8rem 1rem;
-        background:#ffd3e6;
-        color:#4a004e;
-        border-radius:0.8rem;
-        text-decoration:none;
-        font-weight:bold;
-        transition:background 0.3s ease, transform 0.3s ease;
-      }
-      .project-list a:hover { background:#ff92b3; color:white; transform:translateX(5px); }
-      footer { margin:2rem 0; font-size:0.9rem; color:#6d2b50; }
-      @media (max-width:800px) {
-        .container { flex-direction:column; text-align:center; padding:1.5rem; }
-        .left-column { border-right:none; border-bottom:2px solid #ffd6e8; padding-bottom:1rem; }
-        .right-column { text-align:center; }
-        .static-header { font-size:1rem; padding:0.6rem 1rem; }
-      }
-    </style>
-  </head>
+# 🌸 Ved's Portfolio  
+
+A **personal portfolio website** that blends **minimal design**, **3D animations**, and **playful interactions**.  
+Built entirely with **HTML, CSS, and Vanilla JS**, this project is all about showcasing my work in a fun, interactive way ✨  
+
+---
+
+## 🚀 Features  
+
+- 🎨 **Aesthetic & Minimal UI** – Soft pastel gradients, smooth layout  
+- 🖼️ **3D Tilt Animation** – Boxes tilt dynamically on hover for an immersive effect  
+- 🌸 **Custom Pink Cursor Trail** – Makes your mouse movements *magical*  
+- 📱 **Fully Responsive** – Scales beautifully across laptops, tablets, and phones  
+- 🎭 **On-Scroll Animations** – Sections smoothly fade & slide in  
+- 🖥️ **Featured Projects Section** – Direct links to my work  
+- ✨ **Hover Effects Everywhere** – Playful motion for icons, links & profile image  
+
+---
+
+## 🛠️ Tech Stack  
+
+- **HTML5** – Structure  
+- **CSS3** – Styling, responsiveness, 3D animations  
+- **JavaScript (Vanilla)** – Interactivity, scroll + hover animations  
+- **Google Fonts** – Playfair Display & Raleway for an elegant look  
+
+---
+
+## 📸 Preview  
+
+| Desktop View | Mobile View |
+|-------------|-------------|
+| ![Desktop Preview](https://via.placeholder.com/600x350?text=Desktop+Preview) | ![Mobile Preview](https://via.placeholder.com/250x450?text=Mobile+Preview) |
+
+> *(Replace the placeholders above with screenshots or GIFs of your site!)*  
+
+---
+
+## 📂 Project Structure  
+
+```bash
+├── index.html      # Main portfolio file
+├── README.md       # This file
+└── assets/         # Images & profile picture
+
   <body>
     <div class='static-header'>
       <span>/Illustrator/</span><span>/Graphic Design/</span><span>/Ved V/</span>
