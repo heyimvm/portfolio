@@ -13,15 +13,16 @@
     }
 
     body {
-      max-width: 100vw;
       width: 100%;
       font-family: 'Raleway', sans-serif;
       background: linear-gradient(to bottom, #ff6fa1, #fff0f5);
       color: #4a004e;
       text-align: center;
+      overflow-x: hidden;
+      position: relative;
+      perspective: 1000px;
     }
 
-    /* 🌸 Static Header Row */
     .static-header {
       display: flex;
       justify-content: space-between;
@@ -32,23 +33,43 @@
       color: #fff7ff;
       font-style: italic;
       border-radius: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
-    /* 🌸 Two-Column Resume Layout */
+    /* Base Box Styling */
+    .container, .contents-page, .section, .projects {
+      transform-style: preserve-3d;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    .container.visible, .contents-page.visible, .section.visible, .projects.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Remove fixed hover tilt, JS will handle tilt dynamically */
+    .tilt {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
     .container {
       display: flex;
-      max-width: 900px;
+      max-width: 700px;
+      margin: 2rem auto;
       background: #fff;
       border-radius: 1.2rem;
       box-shadow: 0 6px 30px rgba(0,0,0,0.15);
-      overflow: hidden;
-      margin: 2rem auto;
       gap: 2rem;
       padding: 2rem;
+      flex-wrap: wrap;
     }
 
     .left-column {
       flex: 1;
+      min-width: 250px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -63,6 +84,11 @@
       height: 140px;
       border-radius: 50%;
       object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-img:hover {
+      transform: rotateZ(8deg) scale(1.05);
     }
 
     .name {
@@ -78,18 +104,13 @@
       color: #6d2b50;
     }
 
-    .info {
-      font-size: 0.9rem;
-      color: #5a3d42;
-      line-height: 1.4;
-    }
-
     .right-column {
       flex: 2;
       display: flex;
       flex-direction: column;
       gap: 1rem;
       text-align: left;
+      min-width: 250px;
     }
 
     .section {
@@ -105,21 +126,6 @@
       margin-bottom: 0.5rem;
     }
 
-    .section p, .section li {
-      font-size: 0.95rem;
-      color: #333;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    li::before {
-      content: "• ";
-      color: #e94b77;
-    }
-
     .softwares {
       display: flex;
       flex-wrap: wrap;
@@ -133,53 +139,41 @@
       border-radius: 0.4rem;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       font-size: 0.85rem;
+      flex: 1 1 auto;
+      transition: transform 0.2s ease;
     }
 
-
-    h2 {
-      font-family: 'Playfair Display', serif;
-      color: #f673b5;
-      font-size: 2rem;
-      margin-bottom: 1rem;
+    .software-icon:hover {
+      transform: scale(1.1) rotateZ(5deg);
     }
 
     .projects {
-  max-width: 700px;
-  margin: 2rem auto;
-  text-align: left;
-  padding: 1rem 1.5rem;
-  background: #fff0f4;
-  border-radius: 1rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
+      max-width: 700px;
+      margin: 2rem auto;
+      text-align: left;
+      padding: 1rem 1.5rem;
+      background: #fff0f4;
+      border-radius: 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
 
-.project-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+    .project-list a {
+      display: block;
+      padding: 0.8rem 1rem;
+      background: #ffd3e6;
+      color: #4a004e;
+      border-radius: 0.8rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease, transform 0.3s ease;
+      margin-bottom: 0.5rem;
+    }
 
-.project-list li {
-  margin: 0.6rem 0;
-}
-
-.project-list a {
-  display: block;
-  width: 100%;
-  padding: 0.8rem 1rem;
-  background: #ffd3e6;
-  color: #4a004e;
-  border-radius: 0.8rem;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.project-list a:hover {
-  background: #ff92b3;
-  color: white;
-  transform: translateX(5px);
-}
+    .project-list a:hover {
+      background: #ff92b3;
+      color: white;
+      transform: translateX(5px) rotateY(5deg) scale(1.05);
+    }
 
     footer {
       margin: 2rem 0;
@@ -187,50 +181,84 @@
       color: #6d2b50;
     }
 
-    /* Responsive */
-    @media (max-width: 800px) {
-      .container {
-        flex-direction: column;
-        text-align: center;
-        padding: 1.5rem;
+    .contents-page {
+      display: flex;
+      max-width: 700px;
+      margin: 2rem auto;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height:50vh;
+      background: #fff0f5;
+      gap: 2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      border-radius: 2rem;
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+    }
+
+    .contents-page a {
+      text-decoration: none;
+      color: #e94b77;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .contents-page a:hover {
+      transform: scale(1.2) rotateZ(5deg);
+      color: #ff4b91;
+    }
+
+    /* Pink Cursor Trail */
+    .trail {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #ff6fa1;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.7;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      animation: fade 0.5s forwards;
+    }
+
+    @keyframes fade {
+      to {
+        opacity: 0;
+        transform: scale(0);
       }
-      .left-column {
-        border-right: none;
-        border-bottom: 2px solid #ffd6e8;
-        padding-bottom: 1rem;
-      }
-      .right-column { text-align: center; }
-      .static-header { font-size: 1rem; padding: 0.6rem 1rem; }
     }
   </style>
 </head>
 <body>
 
-
-  <!-- 🌸 Static Header Row -->
   <div class="static-header">
     <span>/Illustrator/</span>
     <span>/Graphic Design/</span>
     <span>/Ved V/</span>
   </div>
 
-  <!-- 🌸 Replaced Portfolio Box with Two-Column Layout -->
-  <div class="container">
+  <div class="contents-page tilt">
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+  </div>
+
+  <div class="container tilt">
     <div class="left-column">
       <img src="7751b0cb-f3ec-40ea-90d1-796dd1a5c7b6-removebg-preview.png" alt="profile" class="profile-img">
       <h1 class="name">Ved</h1>
       <p class="title">✨Electrical Engineering Student ✨<br>✨ Developer ✨</p>
-      <p class="info">
-      </p>
     </div>
 
     <div class="right-column">
-      <div class="section">
+      <div class="section tilt" id="about">
         <h2>About Me</h2>
         <p>Hi! I'm Ved! I love blending design and software together. Currently focused on building aesthetic, responsive web apps ✨</p>
       </div>
 
-      <div class="section">
+      <div class="section tilt" id="education">
         <h2>Education</h2>
         <ul>
           <li>B.Tech Electrical Engineering - NIT Trichy</li>
@@ -238,14 +266,14 @@
         </ul>
       </div>
 
-      <div class="section">
+      <div class="section tilt" id="experience">
         <h2>Experience</h2>
         <ul>
           <li>Freelance Web Development & UI/UX Projects</li>
         </ul>
       </div>
 
-      <div class="section">
+      <div class="section tilt" id="software">
         <h2>Software</h2>
         <div class="softwares">
           <span class="software-icon">ReactJs</span>
@@ -261,20 +289,66 @@
     </div>
   </div>
 
-
-    <section class="projects">
-  <h2>Featured Projects</h2>
-  <ul class="project-list">
-    <a href="https://github.com/heyimvm/yougamain.git">YOUGA – Real-time Body Movement Detection</a><br>
-    <a href="#">Portfolio Website</a><br>
-    <a href="https://github.com/heyimvm/fixmydrive.git">Fix My Drive</a><br>
-    <a href="https://github.com/heyimvm/SIPVED.git">Student Internship Portal E-Cell</a><br>
-  </ul>
-</section>
+  <section class="projects tilt" id="projects">
+    <h2>Featured Projects</h2>
+    <ul class="project-list">
+      <a href="https://github.com/heyimvm/yougamain.git">YOUGA – Real-time Body Movement Detection</a>
+      <a href="#">Portfolio Website</a>
+      <a href="https://github.com/heyimvm/fixmydrive.git">Fix My Drive</a>
+      <a href="https://github.com/heyimvm/SIPVED.git">Student Internship Portal E-Cell</a>
+    </ul>
+  </section>
 
   <footer>
     <p>Made with 💖 by Ved | <a href="mailto:Vedavarshiniv2@gmail.com">Contact Me</a></p>
   </footer>
 
+  <script>
+    // Scroll Animation
+    const sections = document.querySelectorAll('.section, .container, .projects, .contents-page');
+    window.addEventListener('scroll', () => {
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 50) {
+          section.classList.add('visible');
+        }
+      });
+    });
+
+    // Pink Cursor Trail
+    document.addEventListener('mousemove', e => {
+      const trail = document.createElement('div');
+      trail.className = 'trail';
+      trail.style.left = `${e.clientX}px`;
+      trail.style.top = `${e.clientY}px`;
+      document.body.appendChild(trail);
+      setTimeout(() => trail.remove(), 500);
+    });
+
+    // Dynamic 3D Tilt Effect
+    document.querySelectorAll('.tilt').forEach(box => {
+      box.addEventListener('mousemove', e => {
+        const rect = box.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * 8;
+        const rotateY = ((x - centerX) / centerX) * 8;
+
+        box.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        box.style.boxShadow = `${-rotateY * 2}px ${rotateX * 2}px 30px rgba(255, 111, 161, 0.3)`;
+      });
+
+      box.addEventListener('mouseleave', () => {
+        box.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+        box.style.boxShadow = '';
+      });
+    });
+  </script>
+
 </body>
 </html>
+
+
